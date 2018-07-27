@@ -1,2 +1,5 @@
 # ac-api-basic
-A basic Java client for Asset Control
+This is a basic Java client that can be used to interact with the data
+management system [Asset Control](https://www.asset-control.com).
+
+For information on how to use it, please visit [terrafino.io](http://terrafino.io).
