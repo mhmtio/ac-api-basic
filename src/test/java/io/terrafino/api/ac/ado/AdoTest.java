@@ -43,11 +43,18 @@ public class AdoTest {
     public void canCreateCopyWithTemplate() throws Exception {
         String newTemplate = "newTemplate";
         Ado ado = ac.createAdo("ADO.1");
-        when(ac.createAdo(anyString(), anyString(), anyString()))
-                .thenReturn(new Ado(ado.getId(), ado.getLongname(), newTemplate, conn));
 
         Ado adoWithNewTemplate = ado.withTemplate(newTemplate);
         assertThat(adoWithNewTemplate.getTemplate(), is(newTemplate));
+    }
+
+    @Test
+    public void canCreateCopyWithLongname() throws Exception {
+        String newLongname = "newLongname";
+        Ado ado = ac.createAdo("ADO.1");
+
+        Ado adoWithNewLongname = ado.withLongname(newLongname);
+        assertThat(adoWithNewLongname.getLongname(), is(newLongname));
     }
 
     @Test

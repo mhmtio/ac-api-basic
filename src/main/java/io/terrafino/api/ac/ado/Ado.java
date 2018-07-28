@@ -40,6 +40,10 @@ public class Ado {
         return new AcService(conn).createAdo(id, longname, newTemplate);
     }
 
+    public Ado withLongname(String newLongname) throws AcException {
+        return new AcService(conn).createAdo(id, newLongname, template);
+    }
+
     public String getId() {
         return id;
     }
