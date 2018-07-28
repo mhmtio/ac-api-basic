@@ -46,11 +46,12 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
     @Test
     public void canStoreAndLoadTimeseries() throws Exception {
         TsRecord record = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(100.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record);
+        TsRecords records = new TsRecords(record);
         ado.storeTimeseries(TREE, records);
         TsRecords tsRecords = ado.loadTimeseries(TREE, 20180101, 20180101, new Attributes("CLOSE"));
         assertThat(tsRecords, is(records));
     }
+
 
     @Test
     public void canAddValidationFunction() throws Exception {
@@ -66,7 +67,7 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
         ado.amendTimeseriesHeaderWith(TREE, ATTRIBUTES);
         ado.addTimeseriesValidation(TREE, new TsValidationNonPositive());
         TsRecord record = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(-100.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record);
+        TsRecords records = new TsRecords(record);
 
         ado.storeTimeseries(TREE, records);
 
@@ -76,7 +77,7 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
     @Test
     public void canRevalidateTimeseries() throws Exception {
         TsRecord record = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(-100.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record);
+        TsRecords records = new TsRecords(record);
 
         ado.storeTimeseries(TREE, records);
 
@@ -126,7 +127,7 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
         ado.amendTimeseriesHeaderWith(TREE, ATTRIBUTES);
         ado.addTimeseriesValidation(TREE, new TsValidationFormula("always_suspect();"));
         TsRecord record = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(100.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record);
+        TsRecords records = new TsRecords(record);
 
         ado.storeTimeseries(TREE, records);
 
@@ -145,7 +146,7 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
         ado.amendTimeseriesHeaderWith(TREE, ATTRIBUTES);
         TsRecord record1 = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(100.0)));
         TsRecord record2 = new TsRecord(20180102, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(200.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record1, record2);
+        TsRecords records = new TsRecords(record1, record2);
         ado.storeTimeseries(TREE, records);
 
         ado.addTimeseriesValidation(TREE, new TsValidationFormula("always_suspect();"));
@@ -161,7 +162,7 @@ public class TimeseriesDataIntegrationTest extends StaticDataIntegrationTest {
         ado.amendTimeseriesHeaderWith(TREE, ATTRIBUTES);
         TsRecord record1 = new TsRecord(20180101, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(100.0)));
         TsRecord record2 = new TsRecord(20180102, 235959, ATTRIBUTES, new Values(ValueFactory.createValue(200.0)));
-        TsRecords records = new TsRecords(ATTRIBUTES, record1, record2);
+        TsRecords records = new TsRecords(record1, record2);
         ado.storeTimeseries(TREE, records);
 
         ado.addTimeseriesValidation(TREE, new TsValidationFormula("always_suspect();"));

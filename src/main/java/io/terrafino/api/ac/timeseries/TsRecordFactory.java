@@ -21,7 +21,7 @@ public class TsRecordFactory {
         acRecords.iterator().forEachRemaining(
                 record -> records.add(fromAc(record, attributes, attributeNumbers))
         );
-        return new TsRecords(attributes, records);
+        return new TsRecords(records);
     }
 
     public static TsRecord fromAc(TimeSeriesRecord record, Attributes attributes, TimeSeriesAttributeNumber[] attributeNumbers) {

@@ -3,24 +3,32 @@ package io.terrafino.api.ac.timeseries;
 import io.terrafino.api.ac.attribute.Attributes;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class TsRecords {
 
     private Attributes attributes;
     private List<TsRecord> records;
 
-    public TsRecords(Attributes attributes, TsRecord... records) {
-        this(attributes, Arrays.asList(records));
+    public TsRecords(TsRecord... records) {
+        this(Arrays.asList(records));
     }
 
-    public TsRecords(Attributes attributes, List<TsRecord> records) {
-        this.attributes = attributes;
-        if (records.stream().anyMatch(r -> !r.getAttributes().equals(attributes))) {
-            throw new IllegalArgumentException("Given arguments must match those of all records!");
+    public TsRecords(List<TsRecord> records) {
+        if (Optional.ofNullable(records).isPresent() && records.size() > 0) {
+            this.attributes = records.get(0).getAttributes();
+            if (records.stream().anyMatch(r -> !r.getAttributes().equals(attributes))) {
+                throw new IllegalArgumentException("Attributes have to be the same on all records!");
+            }
+        } else {
+            this.attributes = new Attributes();
+            this.records = Collections.emptyList();
         }
         this.records = records;
     }
+
 
     public Attributes getAttributes() {
         return attributes;

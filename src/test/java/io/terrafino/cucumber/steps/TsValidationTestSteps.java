@@ -100,7 +100,7 @@ public class TsValidationTestSteps {
             }
             records.add(new TsRecord(date, time, attributes, new Values(values)));
         }
-        return new TsRecords(attributes, records);
+        return new TsRecords(records);
     }
 
 

@@ -8,6 +8,7 @@ import io.terrafino.api.ac.AcException;
 import io.terrafino.api.ac.ado.Ado;
 import io.terrafino.api.ac.attribute.Attributes;
 import io.terrafino.api.ac.timeseries.TsHeader;
+import io.terrafino.api.ac.timeseries.TsRecord;
 import io.terrafino.api.ac.timeseries.TsRecordFactory;
 import io.terrafino.api.ac.timeseries.TsRecords;
 import io.terrafino.api.ac.validation.TsValidation;
@@ -153,7 +154,7 @@ public class AcQueryService {
             if (Optional.ofNullable(results).isPresent() && results.size() == 1) {
                 return TsRecordFactory.fromAc(results.getTimeSeriesResult(0).getTimeSeries().getRecords(), attributes, attributeNumbers);
             } else {
-                return new TsRecords(attributes, new ArrayList<>());
+                return new TsRecords(new ArrayList<>());
             }
         } catch (ServerException e) {
             throw new AcException(String.format("Could not load timeseries of %s / %s / %s", ado.getId(), tree, attributes), e);
