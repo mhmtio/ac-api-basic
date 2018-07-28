@@ -17,6 +17,24 @@ public class ValuesTest {
     }
 
     @Test
+    public void canCreateDoubleValues() throws Exception {
+        Values values = new Values(100L, 200L);
+        assertThat(values.getAll(), is(Arrays.asList(createValue(100L), createValue(200L))));
+    }
+
+    @Test
+    public void canCreateLongValues() throws Exception {
+        Values values = new Values("ABC", "DEF");
+        assertThat(values.getAll(), is(Arrays.asList(createValue("ABC"), createValue("DEF"))));
+    }
+
+    @Test
+    public void canCreateStringValues() throws Exception {
+        Values values = new Values(100.0, 200.0);
+        assertThat(values.getAll(), is(Arrays.asList(createValue(100.0), createValue(200.0))));
+    }
+
+    @Test
     public void canGetSizeOfValues() throws Exception {
         Values values = new Values(createValue("VALUE1"), createValue("VALUE2"));
         assertThat(values.size(), is(2));

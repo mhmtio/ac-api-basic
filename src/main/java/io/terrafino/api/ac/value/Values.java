@@ -18,6 +18,18 @@ public class Values {
         this(Arrays.asList(values));
     }
 
+    public Values(Double... values) {
+        this(Arrays.stream(values).map(ValueFactory::createValue).collect(Collectors.toList()));
+    }
+
+    public Values(Long... values) {
+        this(Arrays.stream(values).map(ValueFactory::createValue).collect(Collectors.toList()));
+    }
+
+    public Values(String... values) {
+        this(Arrays.stream(values).map(ValueFactory::createValue).collect(Collectors.toList()));
+    }
+
     public List<Value> getAll() {
         return values;
     }
