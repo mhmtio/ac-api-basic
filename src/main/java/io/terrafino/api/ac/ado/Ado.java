@@ -68,9 +68,29 @@ public class Ado {
         set(attributeId, ValueFactory.createValue(value));
     }
 
-    public void setAndStore(String attributeId, String value) throws AcException {
+    public void set(String attributeId, Long value) {
         set(attributeId, ValueFactory.createValue(value));
+    }
+
+    public void set(String attributeId, Double value) {
+        set(attributeId, ValueFactory.createValue(value));
+    }
+
+    public void setAndStore(String attributeId, Value value) throws AcException {
+        set(attributeId, value);
         store();
+    }
+
+    public void setAndStore(String attributeId, String value) throws AcException {
+        setAndStore(attributeId, ValueFactory.createValue(value));
+    }
+
+    public void setAndStore(String attributeId, Long value) throws AcException {
+        setAndStore(attributeId, ValueFactory.createValue(value));
+    }
+
+    public void setAndStore(String attributeId, Double value) throws AcException {
+        setAndStore(attributeId, ValueFactory.createValue(value));
     }
 
     public Ado withAttrValue(String attributeId, Value value) throws AcException {

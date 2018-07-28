@@ -67,10 +67,24 @@ public class AdoTest {
     }
 
     @Test
-    public void canSetStaticAttribute() throws Exception {
+    public void canSetStaticAttributeAsString() throws Exception {
         Ado ado = ac.createAdo("ADO.1");
         ado.set("C0#SA001", "EUR");
         assertThat(ado.get("C0#SA001").toString(), is("EUR"));
+    }
+
+    @Test
+    public void canSetStaticAttributeAsLong() throws Exception {
+        Ado ado = ac.createAdo("ADO.1");
+        ado.set("C0#SA002", 1L);
+        assertThat(ado.get("C0#SA002").toString(), is(1L));
+    }
+
+    @Test
+    public void canSetStaticAttributeAsDouble() throws Exception {
+        Ado ado = ac.createAdo("ADO.1");
+        ado.set("C0#SA003", 1.5);
+        assertThat(ado.get("C0#SA003").toString(), is(1.5));
     }
 
 }
